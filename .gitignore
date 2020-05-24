@@ -1,6 +1,8 @@
 # IDE
 /.vscode
-#
+env
+
+# My Personal Files
 /engine
 /gui/bootstrap
 
