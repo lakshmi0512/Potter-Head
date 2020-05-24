@@ -1,0 +1,13 @@
+{
+    "name": "potterhead",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "electron": "^8.2.3",
+        "python-shell": "^1.0.8",
+        "xmlhttprequest": "^1.8.0"
+    }
+}
