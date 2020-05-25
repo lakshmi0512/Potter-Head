@@ -4,7 +4,6 @@ env
 
 # My Personal Files
 /engine
-/gui/bootstrap
 
 #Node
 /node_modules
