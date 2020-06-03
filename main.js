@@ -1,10 +1,10 @@
-const {PythonShell} = require('python-shell')
-const path = require('path')
+const { PythonShell } = require("python-shell");
+const path = require("path");
 
-const ipc = require('electron').ipcMain;
-console.log('IPC Started!')
+const ipc = require("electron").ipcMain;
+console.log("IPC Started!");
 
-const {app, BrowserWindow} = require('electron');
+const { app, BrowserWindow } = require("electron");
 
 /*
 let options =
@@ -18,28 +18,28 @@ PythonShell.run('run.py', options, function (err, results) {
 
 */
 
-function createMainWindow()
-{
-    let resultWindow;
-    let mainWindow = new BrowserWindow(
-        {
-            width: 1200, height: 800,
-            //webPreferences: {preload: path.join(__dirname, '/gui/index.js')},
-            show: false,
-            //maximizable: false,
-            type:"desktop"            
-        });
-    mainWindow.loadFile(path.join(__dirname,'/gui/index.html'));
-    mainWindow.maximize();
+function createMainWindow() {
+  let resultWindow;
+  let mainWindow = new BrowserWindow({
+    width: 1200,
+    height: 800,
+    //webPreferences: {preload: path.join(__dirname, '/gui/index.js')},
+    show: false,
+    //maximizable: false,
+    type: "desktop",
+  });
+  mainWindow.loadFile(path.join(__dirname, "/gui/index.html"));
+  mainWindow.maximize();
 
-    mainWindow.webContents.openDevTools();
-    
-    mainWindow.once('ready-to-show', () => {mainWindow.show();})
+  mainWindow.webContents.openDevTools();
 
-    mainWindow.on('closed', () => {mainWindow = null;});
+  mainWindow.once("ready-to-show", () => {
+    mainWindow.show();
+  });
+
+  mainWindow.on("closed", () => {
+    mainWindow = null;
+  });
 }
 
-app.whenReady().then(createMainWindow)
-
-
-
+app.whenReady().then(createMainWindow);
