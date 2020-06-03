@@ -7,7 +7,7 @@
     "dependencies": {
         "dotenv": "^8.2.0",
         "electron": "^9.0.2",
-        "python-shell": "^1.0.8",
+        "python-shell": "^2.0.1",
         "xmlhttprequest": "^1.8.0"
     }
 }
