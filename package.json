@@ -1,14 +1,11 @@
 {
   "name": "potterhead",
-  "main": "main.js",
+  "main": "engine.js",
   "scripts": {
-      "start": "electron ."
+    "start": "node engine.js"
   },
   "dependencies": {
-      "dotenv": "^8.2.0",
-      "electron": "^9.0.4",
-      "python-shell": "^2.0.1",
-      "xmlhttprequest": "^1.8.0"
+    "dotenv": "^8.2.0",
+    "xmlhttprequest": "^1.8.0"
   }
-
 }

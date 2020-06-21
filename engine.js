@@ -28,9 +28,3 @@ class MakeRequests {
     requests.send();
   }
 }
-
-/*
-const url = require('./config').BASE_URL;
-this.makeRequest(url, route, key);
-requests.addEventListener("readystatechange", this.processRequest, false);
-*/
