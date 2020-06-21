@@ -1,6 +1,6 @@
 # IDE
 /.vscode
-env
+.env
 
 # My Personal Files
 /engine

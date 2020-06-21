@@ -1,5 +1,5 @@
-const dotenv = require("dotenv");
-dotenv.config("env");
+const dotenv = require("dotenv").config();
+
 
 module.exports = {
   POTTERAPI_KEY: process.env.HARRY_POTTER_API_KEY,

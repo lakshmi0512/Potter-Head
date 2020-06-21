@@ -3,8 +3,8 @@ const axios = require("axios").default;
 const readline = require("readline-sync");
 
 const KEY = "?key=" + POTTERAPI_KEY;
-var routes = ["spells", "characters", "sortingHat"];
-
+var routes = ["sortingHat", "characters", "houses", "spells"];
+console.log(POTTERAPI_KEY);
 class API {
   getinput() {
     routes.forEach((element) => {
@@ -17,19 +17,49 @@ class API {
   }
 
   getOutput(route) {
-    axios
-      .get(BASE_URL + route, { params: { key: POTTERAPI_KEY } })
-      .then(function (response) {
-        if (response.status == 200) {
-          console.log(response.data);
-        }
-      })
-      .catch(function (error) {
-        console.log("Error::" + error);
-      });
+    if (route === "sortingHat") {
+      axios
+        .get(BASE_URL + route, { params: { key: POTTERAPI_KEY } })
+        .then(function (response) {
+          if (response.status === 200) {
+            console.log(response.data);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else if (route === "characters") {
+      console.log("This output is extremely large so avoid using it.");
+    } else if (route === "houses") {
+      console.log("This output is large so avoid using it.");
+      axios
+        .get(BASE_URL + route, { params: { key: POTTERAPI_KEY } })
+        .then(function (response) {
+          if (response.status === 200) {
+            console.log(response.data);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else if (route === "spells") {
+      axios
+        .get(BASE_URL + route, { params: { key: POTTERAPI_KEY } })
+        .then(function (response) {
+          if (response.status === 200) {
+            console.log(response.data);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+          console.log(response.url);
+        });
+    } else {
+      console.log("Enter Valid choice!");
+    }
   }
 }
 
-api = new API();
+const api = new API();
 var option = api.getinput();
 api.getOutput(option);
