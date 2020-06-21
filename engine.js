@@ -1,4 +1,5 @@
 var routes = ["spells", "characters"];
+const { KEY, BASE_URL } = require("./config");
 
 class MakeRequests {
   constructor(key, url, type) {
@@ -11,20 +12,27 @@ class MakeRequests {
   }
 
   processRequest() {
-    if (requests.readyState === 4 && requests.status === 200) {
-      var response = JSON.parse(requests.responseText);
+    if (this.requests.readyState === 4 && this.requests.status === 200) {
+      var response = JSON.parse(this.requests.responseText);
       console.log("Complete!");
-      console.log(typeof requests.responseText);
+      console.log(typeof this.requests.responseText);
       //console.log(response)
-    } else if (requests.readyState === 3) {
+    } else if (this.requests.readyState === 3) {
       console.log("Loading... ");
     } else {
-      console.log("Failed!" + requests.status);
+      console.log("Failed:: " + this.requests.status);
     }
   }
 
   makeRequest(url, route, key) {
-    requests.open("GET", url + route + "?key=" + key, requests);
-    requests.send();
+    this.requests.open("GET", url + route + "?key=" + key, this.requests);
+    this.requests.send();
+    this.processRequest()
   }
 }
+
+console.log(KEY);
+console.log(BASE_URL);
+
+const query = new MakeRequests(KEY, BASE_URL, "GET");
+query.makeRequest(BASE_URL, routes[0], KEY);
