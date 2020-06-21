@@ -1,38 +1,35 @@
-var routes = ["spells", "characters"];
-const { KEY, BASE_URL } = require("./config");
+const { POTTERAPI_KEY, BASE_URL } = require("./config");
+const axios = require("axios").default;
+const readline = require("readline-sync");
 
-class MakeRequests {
-  constructor(key, url, type) {
-    this.key = key;
-    this.url = url;
-    this.type = type;
-    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-    this.requests = new XMLHttpRequest();
-    this.requests.responseType = "json";
+const KEY = "?key=" + POTTERAPI_KEY;
+var routes = ["spells", "characters", "sortingHat"];
+
+class API {
+  getinput() {
+    routes.forEach((element) => {
+      console.log(routes.indexOf(element) + 1 + ": " + element);
+    });
+
+    var option = readline.questionInt("Enter option: ") - 1;
+    console.log("You Choose: " + routes[option]);
+    return routes[option];
   }
 
-  processRequest() {
-    if (this.requests.readyState === 4 && this.requests.status === 200) {
-      var response = JSON.parse(this.requests.responseText);
-      console.log("Complete!");
-      console.log(typeof this.requests.responseText);
-      //console.log(response)
-    } else if (this.requests.readyState === 3) {
-      console.log("Loading... ");
-    } else {
-      console.log("Failed:: " + this.requests.status);
-    }
-  }
-
-  makeRequest(url, route, key) {
-    this.requests.open("GET", url + route + "?key=" + key, this.requests);
-    this.requests.send();
-    this.processRequest()
+  getOutput(route) {
+    axios
+      .get(BASE_URL + route, { params: { key: POTTERAPI_KEY } })
+      .then(function (response) {
+        if (response.status == 200) {
+          console.log(response.data);
+        }
+      })
+      .catch(function (error) {
+        console.log("Error::" + error);
+      });
   }
 }
 
-console.log(KEY);
-console.log(BASE_URL);
-
-const query = new MakeRequests(KEY, BASE_URL, "GET");
-query.makeRequest(BASE_URL, routes[0], KEY);
+api = new API();
+var option = api.getinput();
+api.getOutput(option);

@@ -5,7 +5,8 @@
     "start": "node engine.js"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "dotenv": "^8.2.0",
-    "xmlhttprequest": "^1.8.0"
+    "readline-sync": "^1.4.10"
   }
 }
